@@ -10,6 +10,12 @@ export function generateStaticParams() {
 export default function LessonPage({ params }) {
   const lesson = LESSONS.find((l) => l.slug === params.slug);
 
+  // Defensive defaults: some lesson fields are optional.
+  const steps = Array.isArray(lesson?.steps) ? lesson.steps : [];
+  const prompts = Array.isArray(lesson?.prompts) ? lesson.prompts : [];
+  const checklist = Array.isArray(lesson?.checklist) ? lesson.checklist : [];
+  const troubleshoot = Array.isArray(lesson?.troubleshoot) ? lesson.troubleshoot : [];
+
   if (!lesson) {
     return (
       <div className="space-y-3">
@@ -43,7 +49,7 @@ export default function LessonPage({ params }) {
       <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm md:p-10">
         <h2 className="text-xl font-bold">步骤清单（照做即可）</h2>
         <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm text-slate-800">
-          {lesson.steps.map((s) => <li key={s}>{s}</li>)}
+          {steps.map((s) => <li key={s}>{s}</li>)}
         </ol>
       </section>
 
@@ -54,14 +60,14 @@ export default function LessonPage({ params }) {
             说明：本网站不直接连 AI（避免费用与隐私风险）。你复制 Prompt 到 AI 工具里运行即可。
           </p>
           <div className="mt-4 space-y-3">
-            {lesson.prompts.map((p) => <CopyBox key={p} text={p} />)}
+            {prompts.map((p) => <CopyBox key={p} text={p} />)}
           </div>
         </div>
 
         <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
           <h2 className="text-xl font-bold">卡住了？先看这里</h2>
           <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-800">
-            {lesson.troubleshoot.map((t) => <li key={t}>{t}</li>)}
+            {troubleshoot.map((t) => <li key={t}>{t}</li>)}
           </ul>
         </div>
       </section>
@@ -69,7 +75,7 @@ export default function LessonPage({ params }) {
       <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm md:p-10">
         <h2 className="text-xl font-bold">完成清单（勾完就算完成）</h2>
         <div className="mt-5">
-          <ClientChecklist items={lesson.checklist} storageKey={`checklist:${lesson.slug}`} />
+          <ClientChecklist items={checklist} storageKey={`checklist:${lesson.slug}`} />
         </div>
 
         <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
