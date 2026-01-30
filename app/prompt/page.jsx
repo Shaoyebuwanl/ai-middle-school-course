@@ -1,4 +1,5 @@
 import { AI_TOOLS_HK, AI_TOOLS_CN } from '../../lib/courseData';
+import CopyBox from '../../components/CopyBox';
 
 const ToolCard = ({ t }) => (
   <a href={t.url} target="_blank" rel="noreferrer"
@@ -16,16 +17,13 @@ const CopyTemplate = () => {
 【输出格式】先给步骤清单，再给可复制内容
 
 我的问题：`;
+
   return (
     <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
       <div className="text-sm font-semibold text-slate-700">通用提示词模板（复制后改一改）</div>
-      <pre className="mt-3 whitespace-pre-wrap rounded-xl bg-white p-4 text-sm text-slate-800">{template}</pre>
-      <button
-        className="mt-3 rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
-        onClick={() => navigator.clipboard.writeText(template)}
-      >
-        一键复制
-      </button>
+      <div className="mt-3">
+        <CopyBox text={template} />
+      </div>
       <div className="mt-2 text-xs text-slate-500">如果复制按钮无反应：手动全选复制也可以。</div>
     </div>
   );
