@@ -15,6 +15,7 @@ export default function LessonPage({ params }) {
   const prompts = Array.isArray(lesson?.prompts) ? lesson.prompts : [];
   const checklist = Array.isArray(lesson?.checklist) ? lesson.checklist : [];
   const troubleshoot = Array.isArray(lesson?.troubleshoot) ? lesson.troubleshoot : [];
+  const resources = Array.isArray(lesson?.resources) ? lesson.resources : [];
 
   if (!lesson) {
     return (
@@ -52,6 +53,27 @@ export default function LessonPage({ params }) {
           {steps.map((s) => <li key={s}>{s}</li>)}
         </ol>
       </section>
+
+      {resources.length > 0 && (
+        <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm md:p-10">
+          <h2 className="text-xl font-bold">资源（下载用）</h2>
+          <p className="mt-2 text-sm text-slate-600">模板文件会从本网站直接下载，无需登录。</p>
+
+          <div className="mt-5 grid gap-3 md:grid-cols-2">
+            {resources.map((r) => (
+              <a
+                key={r.href}
+                href={r.href}
+                className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-[1px] hover:bg-slate-50"
+              >
+                <div className="text-sm font-semibold text-slate-900">{r.title}</div>
+                {r.note ? <div className="mt-1 text-xs text-slate-600">{r.note}</div> : null}
+                <div className="mt-3 text-xs font-semibold text-indigo-700">点击下载</div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="grid gap-4 md:grid-cols-2">
         <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
