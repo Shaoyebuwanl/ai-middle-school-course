@@ -1,4 +1,11 @@
-import Link from 'next/link';
+im
+const DEFAULT_TROUBLESHOOT = [
+  '找不到下载按钮：回到本课页面顶部，往下滚动到“资源”，或刷新页面（Ctrl+R）。',
+  '点下载没反应：看浏览器是否拦截下载（地址栏右侧提示），允许后再点一次。',
+  'app.js 打不开/报 Windows Script Host：不要双击运行，用记事本或 VS Code 打开编辑。',
+  '选项空白：检查 choices 是否真的是 4 个选项（数组），不要把 ```json 代码框标记粘进去。',
+];
+port Link from 'next/link';
 import { LESSONS } from '../../../lib/courseData';
 import ClientChecklist from '../../../components/ClientChecklist';
 import CopyBox from '../../../components/CopyBox';
