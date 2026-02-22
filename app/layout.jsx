@@ -1,6 +1,5 @@
 import './globals.css';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import AppShell from '../components/AppShell';
 
 export const metadata = {
   title: '中学生 AI 做 App 课程',
@@ -11,9 +10,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="zh-CN">
       <body>
-        <Navbar />
-        <main className="container py-10">{children}</main>
-        <Footer />
+        <AppShell>
+          <main className="px-4 py-6 md:px-8 md:py-8">{children}</main>
+        </AppShell>
       </body>
     </html>
   );
