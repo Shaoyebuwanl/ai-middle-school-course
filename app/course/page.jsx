@@ -7,7 +7,7 @@ export default function CoursePage() {
   return (
     <div className="space-y-10">
       <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm md:p-10">
-        <h1 className="text-2xl font-bold">课程地图（5 节课）</h1>
+        <h1 className="text-2xl font-bold">课程地图（{sorted.length} 节课）</h1>
         <p className="mt-2 text-slate-700">
           建议顺序学习：每节课做完一个小作品，再进入下一课。每课底部有“完成清单”，勾完就算完成。
         </p>
